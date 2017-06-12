@@ -3,12 +3,12 @@ class Database
 {
     function selectAllCarRows()
     {
-        $link = mssql_connect("") or die("Не соединилось!!!");
-        mssql_select_db('[selection]') or die("Не найдена БД");
+        $link = mssql_connect("") or die("Error :" . mssql_get_last_message());
+        mssql_select_db('[selection]') or die("Error :" . mssql_get_last_message());
 
         $query = "SELECT * FROM dbo.abw_selection";
 
-        $result = mssql_query($query) or die("Error :" . mssql_get_last_message() );
+        $result = mssql_query($query) or die("Error :" . mssql_get_last_message());
 
         if (!mssql_num_rows($result)) {
             mssql_free_result($result);
